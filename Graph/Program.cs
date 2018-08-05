@@ -11,16 +11,23 @@ namespace Graph
     {
         static void Main(string[] args)
         {
-            int size = 20;
-            AdjacencyList graph = new AdjacencyList(size);
-            graph.AddEdge(15, 4);
-            graph.AddEdge(0, 2);
-            graph.AddEdge(1, 4);
-            graph.AddEdge(3, 4);
-            graph.AddEdge(4, 5);
-            graph.AddEdge(8, 4);
-            graph.AddEdge(4, 2);
-            graph.print();
+            int size = 10000;
+            Graph graph = new Graph(size);
+            //graph.AddEdge(15, 4);
+            //graph.AddEdge(0, 2);
+            //graph.AddEdge(1, 4);
+            //graph.AddEdge(3, 4);
+            //graph.AddEdge(4, 5);
+            //graph.AddEdge(8, 4);
+            //graph.AddEdge(4, 2);
+            for(int i = 0; i < size; i++)
+            {
+                for(int y = 0; y < size; y++)
+                {
+                    graph.AddEdge(i, y);
+                }
+            }
+            //graph.Print();
 
             Console.ReadLine();
                 

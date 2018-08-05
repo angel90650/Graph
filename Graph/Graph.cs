@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Graph
 {
-    class AdjacencyList
+    class Graph
     {
         private List<int> [] list;
         private int numEdges;
         private int numVertices;
         private int size;
 
-        public AdjacencyList(int size)
+        public Graph(int size)
         {
             this.size = size;
             list = new List<int>[size];
@@ -27,8 +27,13 @@ namespace Graph
 
         public void AddEdge(int src, int dest)
         {
-            if (src < size && dest < size)
+            if (src < size && dest < size && src >= 0 && dest >= 0)
             {
+                if(list[src].Contains(dest))
+                {
+                    //Console.WriteLine("Already in the list :Edge (" + src + " - " + dest + ")");
+                    return;
+                }
                 if (list[src].Count == 0) numVertices++;
                 if (list[dest].Count == 0) numVertices++;
                 list[src].Add(dest);
@@ -41,18 +46,15 @@ namespace Graph
             }
         }
 
-        public void print()
+        public void Print()
         {
             Console.WriteLine("Printing Graph with " + numEdges + " edges and " + numVertices + " vertices");
             int src = 0;
             foreach(List<int> x in list)
             {
-                if(x.Count != 0)
+                foreach (int dest in x)
                 {
-                    foreach(int dest in x)
-                    {
-                        Console.WriteLine("Edge (" + src + " - " + dest + ")");
-                    }
+                    Console.WriteLine("Edge (" + src + " - " + dest + ")");
                 }
                 src++;
             }
